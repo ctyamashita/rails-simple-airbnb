@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>All flats</h1>
+  <form action="flats/search">
+    <input type="text" name="name">
+    <input type="submit">
+  </form>
+
+  <%= link_to "Create a flat", new_flat_path %>
+  <div class="cards">
+    <% @flats.each do |flat| %>
+      <div class="card-trip">
+        <img src="https://source.unsplash.com/random/?house" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= flat.name %></h2>
+            <p><%= flat.description %></p>
+          </div>
+          <h2 class="card-trip-pricing">¥<%= flat.price_per_night %></h2>
+        </div>
+        <div class="links">
+          <%= link_to '🔎', flat_path(flat), class: 'icon-btn' %>
+          <span>|</span>
+          <%= link_to '✏️', edit_flat_path(flat), class: 'icon-btn' %>
+          <span>|</span>
+          <%= link_to '🗑️', flat_path(flat), method: :delete, data: { confirm: "you sure?" }, class: 'icon-btn' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
